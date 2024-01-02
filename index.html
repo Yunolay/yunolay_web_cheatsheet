@@ -22,82 +22,153 @@
 
 <script>
 
-    document.getElementById('updateButton').addEventListener('click', function() {
-      var targetIp = document.getElementById('target-ip').value;
-      var targetPort = document.getElementById('target-port').value;
-      var targetDomain = document.getElementById('target-domain').value;
-      var localIp = document.getElementById('local-ip').value;
-      var localPort = document.getElementById('local-port').value;
-  
-      var commandTextCount = 15;
-  
-      for (var i = 1; i <= commandTextCount; i++) {
-        var commandTextId = 'commandText' + i;
-        var commandElement = document.getElementById(commandTextId);
-        var commandText = commandElement.textContent;
-  
-        if (targetIp) {
-          commandText = commandText.replace(new RegExp('\\$target_ip', 'g'), targetIp);
-        }
-        if (targetPort) {
-          commandText = commandText.replace(new RegExp('\\$target_port', 'g'), targetPort);
-        }
-        if (targetDomain) {
-          commandText = commandText.replace(new RegExp('\\$target_domain', 'g'), targetDomain);
-        }
-        if (localIp) {
-          commandText = commandText.replace(new RegExp('\\$local_ip', 'g'), localIp);
-        }
-        if (localPort) {
-          commandText = commandText.replace(new RegExp('\\$local_port', 'g'), localPort);
-        }
-  
-        commandElement.textContent = commandText;
-      }
-    });
-  
-    document.getElementById('updateDefaltButton').addEventListener('click', function() {
-      var targetIp = document.getElementById('input-target-ip').value;
-      var targetPort = document.getElementById('input-target-port').value;
-      var targetDomain = document.getElementById('input-target-domain').value;
-      var localIp = document.getElementById('input-local-ip').value;
-      var localPort = document.getElementById('input-local-port').value;
-  
-      if (targetIp) {
-        document.getElementById('commandText1').innerHTML = `target_ip="${targetIp}"; echo $target_ip`;
-      }
-      if (targetPort) {
-        document.getElementById('commandText2').innerHTML = `target_port="${targetPort}"; echo $target_port`;
-      }
-      if (targetDomain) {
-        document.getElementById('commandText3').innerHTML = `target_domain="${targetDomain}"; echo $target_domain`;
-      }
-      if (localIp) {
-        document.getElementById('commandText4').innerHTML = `local_ip="${localIp}"; echo $local_ip`;
-      }
-      if (localPort) {
-        document.getElementById('commandText5').innerHTML = `local_port="${localPort}"; echo $local_port`;
-      }
-    });
-  
-    var commandTextCount = 100;
-  
-    for (var i = 1; i <= commandTextCount; i++) {
-        (function(i) {
-            var copyButtonId = 'copyButton' + i;
-            var commandTextId = 'commandText' + i;
-  
-            document.getElementById(copyButtonId).addEventListener('click', function() {
-                var commandText = document.getElementById(commandTextId).textContent;
-                navigator.clipboard.writeText(commandText).then(function() {
-                    console.log('Copying to clipboard was successful!');
-                }, function(err) {
-                    console.error('Could not copy text: ', err);
-                });
-            });
-        })(i);
+  document.getElementById('updateButton1').addEventListener('click', function() {
+    var targetIp = document.getElementById('target-ip').value;
+    if (targetIp) {
+      var commandElements = document.querySelectorAll('span[id^="commandText"]');
+      commandElements.forEach(function(element) {
+        var commandText = element.innerHTML;
+        commandText = commandText.replace(/\$target_ip/g, targetIp);
+        element.innerHTML = commandText;
+      });
     }
-  </script>
+  });
+
+  document.getElementById('updateButton2').addEventListener('click', function() {
+    var targetPort = document.getElementById('target-port').value;
+    if (targetPort) {
+      var commandElements = document.querySelectorAll('span[id^="commandText"]');
+      commandElements.forEach(function(element) {
+        var commandText = element.innerHTML;
+        commandText = commandText.replace(/\$target_port/g, targetPort);
+        element.innerHTML = commandText;
+      });
+    }
+  });
+
+  document.getElementById('updateButton3').addEventListener('click', function() {
+    var targetDomain = document.getElementById('target-domain').value;
+    if (targetDomain) {
+      var commandElements = document.querySelectorAll('span[id^="commandText"]');
+      commandElements.forEach(function(element) {
+        var commandText = element.innerHTML;
+        commandText = commandText.replace(/\$target_domain/g, targetDomain);
+        element.innerHTML = commandText;
+      });
+    }
+  });
+
+  document.getElementById('updateButton4').addEventListener('click', function() {
+    var localIp = document.getElementById('local-ip').value;
+    if (localIp) {
+      var commandElements = document.querySelectorAll('span[id^="commandText"]');
+      commandElements.forEach(function(element) {
+        var commandText = element.innerHTML;
+        commandText = commandText.replace(/\$local_ip/g, localIp);
+        element.innerHTML = commandText;
+      });
+    }
+  });
+
+  document.getElementById('updateButton5').addEventListener('click', function() {
+    var localPort = document.getElementById('local-port').value;
+    if (localPort) {
+      var commandElements = document.querySelectorAll('span[id^="commandText"]');
+      commandElements.forEach(function(element) {
+        var commandText = element.innerHTML;
+        commandText = commandText.replace(/\$local_port/g, localPort);
+        element.innerHTML = commandText;
+      });
+    }
+  });
+
+  function updateCommandText(variable, value) {
+    var commandTextCount = 15;
+
+    for (var i = 1; i <= commandTextCount; i++) {
+      var commandTextId = 'commandText' + i;
+      var commandElement = document.getElementById(commandTextId);
+      var commandText = commandElement.innerHTML;
+
+      commandText = commandText.replaceAll(new RegExp('\\' + variable, 'g'), value);
+
+      commandElement.innerHTML = commandText;
+    }
+  }
+
+  document.getElementById('updateDefaltButton1').addEventListener('click', function() {
+  var targetIp = document.getElementById('input-target-ip').value;
+  if (targetIp) {
+    document.getElementById('commandText1').innerHTML = `target_ip="${targetIp}"; echo $target_ip`;
+    var commandElement = document.getElementById('command');
+    var commandText = commandElement.innerHTML;
+    commandText = commandText.replace(/(\$ echo \$target_ip<br>\n\s*)\S+/, `$1${targetIp}<br>`);
+    commandElement.innerHTML = commandText;
+  }
+});
+
+  document.getElementById('updateDefaltButton2').addEventListener('click', function() {
+    var targetPort = document.getElementById('input-target-port').value;
+    if (targetPort) {
+      document.getElementById('commandText2').innerHTML = `target_port="${targetPort}"; echo $target_port`;
+      var commandElement = document.getElementById('command');
+      var commandText = commandElement.innerHTML;
+      commandText = commandText.replace(/(\$ echo \$target_port<br>\n\s*)\S+/, `$1${targetPort}<br>`);
+      commandElement.innerHTML = commandText;
+    }
+  });
+
+  document.getElementById('updateDefaltButton3').addEventListener('click', function() {
+    var targetDomain = document.getElementById('input-target-domain').value;
+    if (targetDomain) {
+      document.getElementById('commandText3').innerHTML = `target_domain="${targetDomain}"; echo $target_domain`;
+      var commandElement = document.getElementById('command');
+      var commandText = commandElement.innerHTML;
+      commandText = commandText.replace(/(\$ echo \$target_domain<br>\n\s*)\S+/, `$1${targetDomain}<br>`);
+      commandElement.innerHTML = commandText;
+    }
+  });
+
+  document.getElementById('updateDefaltButton4').addEventListener('click', function() {
+    var localIp = document.getElementById('input-local-ip').value;
+    if (localIp) {
+      document.getElementById('commandText4').innerHTML = `local_ip="${localIp}"; echo $local_ip`;
+      var commandElement = document.getElementById('command');
+      var commandText = commandElement.innerHTML;
+      commandText = commandText.replace(/(\$ echo \$local_ip<br>\n\s*)\S+/, `$1${localIp}<br>`);
+      commandElement.innerHTML = commandText;
+    }
+  });
+
+  document.getElementById('updateDefaltButton5').addEventListener('click', function() {
+    var localPort = document.getElementById('input-local-port').value;
+    if (localPort) {
+      document.getElementById('commandText5').innerHTML = `local_port="${localPort}"; echo $local_port`;
+      var commandElement = document.getElementById('command');
+      var commandText = commandElement.innerHTML;
+      commandText = commandText.replace(/(\$ echo \$local_port<br>\n\s*)\S+/, `$1${localPort}<br>`);
+      commandElement.innerHTML = commandText;
+    }
+  });
+
+  var commandTextCount = 100;
+
+  for (var i = 1; i <= commandTextCount; i++) {
+      (function(i) {
+          var copyButtonId = 'copyButton' + i;
+          var commandTextId = 'commandText' + i;
+
+          document.getElementById(copyButtonId).addEventListener('click', function() {
+              var commandText = document.getElementById(commandTextId).textContent;
+              navigator.clipboard.writeText(commandText).then(function() {
+                  console.log('Copying to clipboard was successful!');
+              }, function(err) {
+                  console.error('Could not copy text: ', err);
+              });
+          });
+      })(i);
+  }
+</script>
 
 </body>
 </html>

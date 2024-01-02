@@ -12,14 +12,13 @@
   </header>
   <main>
     <p>> <a herf="index.html">Home</a></p>
-    <p>Template</p>
-    <p>Basic infomation.</p>
+    <h2>Environment Variable Replacer</h2>
     <p>Replace the environment variables.<br>If you are using environment variables, there is no need to replace them.</p>
-    <p>Target ip: <input type="text" name="target-ip" id="target-ip"> <button type="button" id="updateButton">Reload</button></p>
-    <p>Target port: <input type="text" name="target-port" id="target-port"> <button type="button" id="updateButton">Reload</button></p>
-    <p>Target domain: <input type="text" name="target-domain" id="target-domain"> <button type="button" id="updateButton">Reload</button></p>
-    <p>Local ip: <input type="text" name="local-ip" id="local-ip"> <button type="button" id="updateButton">Reload</button></p>
-    <p>Local port: <input type="text" name="local-port" id="local-port"> <button type="button" id="updateButton">Reload</button></p>
+    <p>Target IP: <input type="text" name="target-ip" id="target-ip"> <button type="button" id="updateButton1">Reload</button></p>
+    <p>Target Port: <input type="text" name="target-port" id="target-port"> <button type="button" id="updateButton2">Reload</button></p>
+    <p>Target Domain: <input type="text" name="target-domain" id="target-domain"> <button type="button" id="updateButton3">Reload</button></p>
+    <p>Local IP: <input type="text" name="local-ip" id="local-ip"> <button type="button" id="updateButton4">Reload</button></p>
+    <p>Local Port: <input type="text" name="local-port" id="local-port"> <button type="button" id="updateButton5">Reload</button></p>
     
     <h2>Use as a environment variables.</h2>
     <p>For example, you can use the following variables in your terminal.</p>
@@ -58,61 +57,132 @@
 
 <script>
 
-  document.getElementById('updateButton').addEventListener('click', function() {
+  document.getElementById('updateButton1').addEventListener('click', function() {
     var targetIp = document.getElementById('target-ip').value;
-    var targetPort = document.getElementById('target-port').value;
-    var targetDomain = document.getElementById('target-domain').value;
-    var localIp = document.getElementById('local-ip').value;
-    var localPort = document.getElementById('local-port').value;
+    if (targetIp) {
+      var commandElements = document.querySelectorAll('span[id^="commandText"]');
+      commandElements.forEach(function(element) {
+        var commandText = element.innerHTML;
+        commandText = commandText.replace(/\$target_ip/g, targetIp);
+        element.innerHTML = commandText;
+      });
+    }
+  });
 
+  document.getElementById('updateButton2').addEventListener('click', function() {
+    var targetPort = document.getElementById('target-port').value;
+    if (targetPort) {
+      var commandElements = document.querySelectorAll('span[id^="commandText"]');
+      commandElements.forEach(function(element) {
+        var commandText = element.innerHTML;
+        commandText = commandText.replace(/\$target_port/g, targetPort);
+        element.innerHTML = commandText;
+      });
+    }
+  });
+
+  document.getElementById('updateButton3').addEventListener('click', function() {
+    var targetDomain = document.getElementById('target-domain').value;
+    if (targetDomain) {
+      var commandElements = document.querySelectorAll('span[id^="commandText"]');
+      commandElements.forEach(function(element) {
+        var commandText = element.innerHTML;
+        commandText = commandText.replace(/\$target_domain/g, targetDomain);
+        element.innerHTML = commandText;
+      });
+    }
+  });
+
+  document.getElementById('updateButton4').addEventListener('click', function() {
+    var localIp = document.getElementById('local-ip').value;
+    if (localIp) {
+      var commandElements = document.querySelectorAll('span[id^="commandText"]');
+      commandElements.forEach(function(element) {
+        var commandText = element.innerHTML;
+        commandText = commandText.replace(/\$local_ip/g, localIp);
+        element.innerHTML = commandText;
+      });
+    }
+  });
+
+  document.getElementById('updateButton5').addEventListener('click', function() {
+    var localPort = document.getElementById('local-port').value;
+    if (localPort) {
+      var commandElements = document.querySelectorAll('span[id^="commandText"]');
+      commandElements.forEach(function(element) {
+        var commandText = element.innerHTML;
+        commandText = commandText.replace(/\$local_port/g, localPort);
+        element.innerHTML = commandText;
+      });
+    }
+  });
+
+  function updateCommandText(variable, value) {
     var commandTextCount = 15;
 
     for (var i = 1; i <= commandTextCount; i++) {
       var commandTextId = 'commandText' + i;
       var commandElement = document.getElementById(commandTextId);
-      var commandText = commandElement.textContent;
+      var commandText = commandElement.innerHTML;
 
-      if (targetIp) {
-        commandText = commandText.replace(new RegExp('\\$target_ip', 'g'), targetIp);
-      }
-      if (targetPort) {
-        commandText = commandText.replace(new RegExp('\\$target_port', 'g'), targetPort);
-      }
-      if (targetDomain) {
-        commandText = commandText.replace(new RegExp('\\$target_domain', 'g'), targetDomain);
-      }
-      if (localIp) {
-        commandText = commandText.replace(new RegExp('\\$local_ip', 'g'), localIp);
-      }
-      if (localPort) {
-        commandText = commandText.replace(new RegExp('\\$local_port', 'g'), localPort);
-      }
+      commandText = commandText.replaceAll(new RegExp('\\' + variable, 'g'), value);
 
-      commandElement.textContent = commandText;
+      commandElement.innerHTML = commandText;
+    }
+  }
+
+  document.getElementById('updateDefaltButton1').addEventListener('click', function() {
+  var targetIp = document.getElementById('input-target-ip').value;
+  if (targetIp) {
+    document.getElementById('commandText1').innerHTML = `target_ip="${targetIp}"; echo $target_ip`;
+    var commandElement = document.getElementById('command');
+    var commandText = commandElement.innerHTML;
+    commandText = commandText.replace(/(\$ echo \$target_ip<br>\n\s*)\S+/, `$1${targetIp}<br>`);
+    commandElement.innerHTML = commandText;
+  }
+});
+
+  document.getElementById('updateDefaltButton2').addEventListener('click', function() {
+    var targetPort = document.getElementById('input-target-port').value;
+    if (targetPort) {
+      document.getElementById('commandText2').innerHTML = `target_port="${targetPort}"; echo $target_port`;
+      var commandElement = document.getElementById('command');
+      var commandText = commandElement.innerHTML;
+      commandText = commandText.replace(/(\$ echo \$target_port<br>\n\s*)\S+/, `$1${targetPort}<br>`);
+      commandElement.innerHTML = commandText;
     }
   });
 
-  document.getElementById('updateDefaltButton').addEventListener('click', function() {
-    var targetIp = document.getElementById('input-target-ip').value;
-    var targetPort = document.getElementById('input-target-port').value;
+  document.getElementById('updateDefaltButton3').addEventListener('click', function() {
     var targetDomain = document.getElementById('input-target-domain').value;
-    var localIp = document.getElementById('input-local-ip').value;
-    var localPort = document.getElementById('input-local-port').value;
-
-    if (targetIp) {
-      document.getElementById('commandText1').innerHTML = `target_ip="${targetIp}"; echo $target_ip`;
-    }
-    if (targetPort) {
-      document.getElementById('commandText2').innerHTML = `target_port="${targetPort}"; echo $target_port`;
-    }
     if (targetDomain) {
       document.getElementById('commandText3').innerHTML = `target_domain="${targetDomain}"; echo $target_domain`;
+      var commandElement = document.getElementById('command');
+      var commandText = commandElement.innerHTML;
+      commandText = commandText.replace(/(\$ echo \$target_domain<br>\n\s*)\S+/, `$1${targetDomain}<br>`);
+      commandElement.innerHTML = commandText;
     }
+  });
+
+  document.getElementById('updateDefaltButton4').addEventListener('click', function() {
+    var localIp = document.getElementById('input-local-ip').value;
     if (localIp) {
       document.getElementById('commandText4').innerHTML = `local_ip="${localIp}"; echo $local_ip`;
+      var commandElement = document.getElementById('command');
+      var commandText = commandElement.innerHTML;
+      commandText = commandText.replace(/(\$ echo \$local_ip<br>\n\s*)\S+/, `$1${localIp}<br>`);
+      commandElement.innerHTML = commandText;
     }
+  });
+
+  document.getElementById('updateDefaltButton5').addEventListener('click', function() {
+    var localPort = document.getElementById('input-local-port').value;
     if (localPort) {
       document.getElementById('commandText5').innerHTML = `local_port="${localPort}"; echo $local_port`;
+      var commandElement = document.getElementById('command');
+      var commandText = commandElement.innerHTML;
+      commandText = commandText.replace(/(\$ echo \$local_port<br>\n\s*)\S+/, `$1${localPort}<br>`);
+      commandElement.innerHTML = commandText;
     }
   });
 
