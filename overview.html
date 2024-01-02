@@ -14,29 +14,26 @@
   </header>
   <main>
     <p> > <a hrefa href="index.html">Home</a> > <a href="overview.html">OverView</a></p>
-    <p>Basic info.</p>
-    <p>If you are using environment variables, there is no need to replace them.</p>
-    <p>Target ip: <input type="text" name="target-ip" id="target-ip"></p>
-    <p>Target port: <input type="text" name="target-port" id="target-port"></p>
-    <p>Target domain: <input type="text" name="target-domain" id="target-domain"></p>
-    <p>Local ip: <input type="text" name="local-ip" id="local-ip"></p>
-    <p>Local port: <input type="text" name="local-port" id="local-port"></p>
-    <button type="button" id="updateButton">Reload</button>
-
-
+    <p>Basic infomation.</p>
+    <p>Replace the environment variables.<br>If you are using environment variables, there is no need to replace them.</p>
+    <p>Target ip: <input type="text" name="target-ip" id="target-ip"> <button type="button" id="updateButton">Reload</button></p>
+    <p>Target port: <input type="text" name="target-port" id="target-port"> <button type="button" id="updateButton">Reload</button></p>
+    <p>Target domain: <input type="text" name="target-domain" id="target-domain"> <button type="button" id="updateButton">Reload</button></p>
+    <p>Local ip: <input type="text" name="local-ip" id="local-ip"> <button type="button" id="updateButton">Reload</button></p>
+    <p>Local port: <input type="text" name="local-port" id="local-port"> <button type="button" id="updateButton">Reload</button></p>
+    
     <h2>Use as a environment variables.</h2>
     <p>For example, you can use the following variables in your terminal.</p>
     <p id="command1">$<span id="commandText1">target_ip="<span id="default-target-ip">192.168.1.2</span>"; echo $target_ip</span><button id="copyButton1">Copy</button></p> 
-    <p>Target ip: <input type="text" id="input-target-ip"></p>
+    <p>Target ip: <input type="text" id="input-target-ip"> <button type="button" id="updateDefaltButton">Reload</button></p>
     <p id="command2">$<span id="commandText2">target_port="<span id="default-target-port">80</span>"; echo $target_port</span><button id="copyButton2">Copy</button></p>
-    <p>Target port: <input type="text" id="input-target-port"></p>
+    <p>Target port: <input type="text" id="input-target-port"> <button type="button" id="updateDefaltButton">Reload</button></p>
     <p id="command3">$<span id="commandText3">target_domain="<span id="default-target-domain">example.com</span>"; echo $target_domain</span><button id="copyButton3">Copy</button></p>
-    <p>Target domain: <input type="text" id="input-target-domain"></p>
+    <p>Target domain: <input type="text" id="input-target-domain"> <button type="button" id="updateDefaltButton">Reload</button></p>
     <p id="command4">$<span id="commandText4">local_ip="<span id="default-local-ip">192.168.1.100</span>"; echo $local_ip</span><button id="copyButton4">Copy</button></p>
-    <p>Local ip: <input type="text" id="input-local-ip"></p>
+    <p>Local ip: <input type="text" id="input-local-ip"> <button type="button" id="updateDefaltButton">Reload</button></p>
     <p id="command5">$<span id="commandText5">local_port="<span id="default-local-ip">4444</span>"; echo $local_port</span><button id="copyButton5">Copy</button></p>
-    <p>Local port: <input type="text" id="input-local-port"></p>
-    <button type="button" id="updateDefaltButton">Reload</button>
+    <p>Local port: <input type="text" id="input-local-port"> <button type="button" id="updateDefaltButton">Reload</button></p>
 
     <p>Check the environment variables.</p>
     <pre id="command">
@@ -54,16 +51,18 @@ $ echo $local_ip
                                                                             
 $ echo $local_port
 4444</pre>
-
-  <h2>Port scan</h2>
+  <h2>Basic Enumeration</h2>
+  For more details, see <a href="basic_enumeration.html">Basic Enumeration</a>.
+  <h3>Port scan</h3>
+  <h4>Linux</h4>
   <p id="command6">$<span id="commandText6">nmap -sV -sC -p- --min-rate 5000 $target_ip</span><button id="copyButton6">Copy</button></p>
 
-  <h3>Windows</h3>
+  <h4>Windows</h4>
   <p id="command7">$<span id="commandText7">nmap -sV -sC -p- -Pn --min-rate 5000 $target_ip</span><button id="copyButton7">Copy</button></p>
 
-  <h2>Web Enumeration</h2>
+  <h3>Web Enumeration</h3>
 
-  <h3>Subdomain Enumeration</h3>
+  <h4>Subdomain Enumeration</h4>
     
   <p>via gobuster</p>
   <p id="command8">$<span id="commandText8">gobuster vhost -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt -u http://$target_domain/ -t 50</span><button id="copyButton8">Copy</button></p>
@@ -71,7 +70,7 @@ $ echo $local_port
   <p>via ffuf</p>
   <p id="command9">$<span id="commandText9">ffuf -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt -u http://$target_domain/ -H "Host: FUZZ.$target_domain" -t 50</span><button id="copyButton9">Copy</button></p>
     
-  <h3>Directory Enumeration</h3>
+  <h4>Directory Enumeration</h4>
   
   <p>via gobuster</p>
   <p id="command10">$<span id="commandText10">gobuster dir -w /usr/share/seclists/Discovery/Web-Content/raft-large-directories-lowercase.txt -t 50</span><button id="copyButton10">Copy</button></p>
@@ -82,7 +81,7 @@ $ echo $local_port
 </main>
 
 <footer>
-  <!-- Footer -->
+  <p> > <a hrefa href="index.html">Home</a> > <a href="overview.html">OverView</a></p>
 </footer>
 
 <script>
