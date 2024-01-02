@@ -16,41 +16,42 @@
     <p> > <a hrefa href="index.html">Home</a> > <a href="overview.html">OverView</a></p>
     <h2>Environment Variable Replacer</h2>
     <p>Replace the environment variables.<br>If you are using environment variables, there is no need to replace them.</p>
-    <p>Target ip: <input type="text" name="target-ip" id="target-ip"> <button type="button" id="updateButton">Reload</button></p>
-    <p>Target port: <input type="text" name="target-port" id="target-port"> <button type="button" id="updateButton">Reload</button></p>
-    <p>Target domain: <input type="text" name="target-domain" id="target-domain"> <button type="button" id="updateButton">Reload</button></p>
-    <p>Local ip: <input type="text" name="local-ip" id="local-ip"> <button type="button" id="updateButton">Reload</button></p>
-    <p>Local port: <input type="text" name="local-port" id="local-port"> <button type="button" id="updateButton">Reload</button></p>
+    <p>Target IP: <input type="text" name="target-ip" id="target-ip"> <button type="button" id="updateButton">Reload</button></p>
+    <p>Target Port: <input type="text" name="target-port" id="target-port"> <button type="button" id="updateButton">Reload</button></p>
+    <p>Target Domain: <input type="text" name="target-domain" id="target-domain"> <button type="button" id="updateButton">Reload</button></p>
+    <p>Local IP: <input type="text" name="local-ip" id="local-ip"> <button type="button" id="updateButton">Reload</button></p>
+    <p>Local Port: <input type="text" name="local-port" id="local-port"> <button type="button" id="updateButton">Reload</button></p>
     
     <h2>Use as a environment variables.</h2>
     <p>For example, you can use the following variables in your terminal.</p>
     <p id="command1">$<span id="commandText1">target_ip="<span id="default-target-ip">192.168.1.2</span>"; echo $target_ip</span><button id="copyButton1">Copy</button></p> 
-    <p>Target ip: <input type="text" id="input-target-ip"> <button type="button" id="updateDefaltButton">Reload</button></p>
+    <p>Change Target IP: <input type="text" id="input-target-ip"> <button type="button" id="updateDefaltButton1">Reload</button></p>
     <p id="command2">$<span id="commandText2">target_port="<span id="default-target-port">80</span>"; echo $target_port</span><button id="copyButton2">Copy</button></p>
-    <p>Target port: <input type="text" id="input-target-port"> <button type="button" id="updateDefaltButton">Reload</button></p>
+    <p>Change Target Port: <input type="text" id="input-target-port"> <button type="button" id="updateDefaltButton2">Reload</button></p>
     <p id="command3">$<span id="commandText3">target_domain="<span id="default-target-domain">example.com</span>"; echo $target_domain</span><button id="copyButton3">Copy</button></p>
-    <p>Target domain: <input type="text" id="input-target-domain"> <button type="button" id="updateDefaltButton">Reload</button></p>
+    <p>Change Target Domain: <input type="text" id="input-target-domain"> <button type="button" id="updateDefaltButton3">Reload</button></p>
     <p id="command4">$<span id="commandText4">local_ip="<span id="default-local-ip">192.168.1.100</span>"; echo $local_ip</span><button id="copyButton4">Copy</button></p>
-    <p>Local ip: <input type="text" id="input-local-ip"> <button type="button" id="updateDefaltButton">Reload</button></p>
+    <p>Change Local IP: <input type="text" id="input-local-ip"> <button type="button" id="updateDefaltButton4">Reload</button></p>
     <p id="command5">$<span id="commandText5">local_port="<span id="default-local-ip">4444</span>"; echo $local_port</span><button id="copyButton5">Copy</button></p>
-    <p>Local port: <input type="text" id="input-local-port"> <button type="button" id="updateDefaltButton">Reload</button></p>
+    <p>Change Local Port: <input type="text" id="input-local-port"> <button type="button" id="updateDefaltButton5">Reload</button></p>
 
     <p>Check the environment variables.</p>
     <pre id="command">
-$ echo $target_ip<br>
-192.168.1.2<br>
-<br>
-$ echo $target_port<br>
-80<br>
-<br>
-$ echo $target_domain<br>
-example.com<br>
-<br>
-$ echo $local_ip<br> 
-192.168.1.100<br>
-<br>
-$ echo $local_port<br>
-4444</pre>
+      $ echo $target_ip<br>
+      192.168.1.2<br>
+      <br>
+      $ echo $target_port<br>
+      80<br>
+      <br>
+      $ echo $target_domain<br>
+      example.com<br>
+      <br>
+      $ echo $local_ip<br> 
+      192.168.1.100<br>
+      <br>
+      $ echo $local_port<br>
+      4444</pre>
+
   <h2>Basic Enumeration</h2>
   <p>For more details, see <a href="basic_enumeration.html">Basic Enumeration</a>.</p>
   <h3>Port scan</h3>
@@ -63,17 +64,16 @@ $ echo $local_port<br>
   <h3>Web Enumeration</h3>
 
   <h4>Subdomain Enumeration</h4>
-    
   <p>via gobuster</p>
   <p id="command8">$<span id="commandText8">gobuster vhost -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt -u http://$target_domain/ -t 50</span><button id="copyButton8">Copy</button></p>
-  
   <p>via ffuf</p>
   <p id="command9">$<span id="commandText9">ffuf -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt -u http://$target_domain/ -H "Host: FUZZ.$target_domain" -t 50</span><button id="copyButton9">Copy</button></p>
     
   <h4>Directory Enumeration</h4>
-  
   <p>via gobuster</p>
   <p id="command10">$<span id="commandText10">gobuster dir -w /usr/share/seclists/Discovery/Web-Content/raft-large-directories-lowercase.txt -t 50</span><button id="copyButton10">Copy</button></p>
+  <p>via fuff</p>
+  <p id="command10">$<span id="commandText10">ffuf -w /usr/share/seclists/Discovery/Web-Content/raft-large-directories-lowercase.txt -u http://$target_domain/FUZZ -t 50</span><button id="copyButton10">Copy</button></p>
 
   <h2>Shell</h2>
   <p>For more details, see <a href="shell.html">Shell</a>.</p>
@@ -132,25 +132,36 @@ $ echo $local_port<br>
     }
   });
 
-  document.getElementById('updateDefaltButton').addEventListener('click', function() {
+  document.getElementById('updateDefaltButton1').addEventListener('click', function() {
     var targetIp = document.getElementById('input-target-ip').value;
-    var targetPort = document.getElementById('input-target-port').value;
-    var targetDomain = document.getElementById('input-target-domain').value;
-    var localIp = document.getElementById('input-local-ip').value;
-    var localPort = document.getElementById('input-local-port').value;
-
     if (targetIp) {
       document.getElementById('commandText1').innerHTML = `target_ip="${targetIp}"; echo $target_ip`;
     }
+  });
+
+  document.getElementById('updateDefaltButton2').addEventListener('click', function() {
+    var targetPort = document.getElementById('input-target-port').value;
     if (targetPort) {
       document.getElementById('commandText2').innerHTML = `target_port="${targetPort}"; echo $target_port`;
     }
+  });
+
+  document.getElementById('updateDefaltButton3').addEventListener('click', function() {
+    var targetDomain = document.getElementById('input-target-domain').value;
     if (targetDomain) {
       document.getElementById('commandText3').innerHTML = `target_domain="${targetDomain}"; echo $target_domain`;
     }
+  });
+
+  document.getElementById('updateDefaltButton4').addEventListener('click', function() {
+    var localIp = document.getElementById('input-local-ip').value;
     if (localIp) {
       document.getElementById('commandText4').innerHTML = `local_ip="${localIp}"; echo $local_ip`;
     }
+  });
+
+  document.getElementById('updateDefaltButton5').addEventListener('click', function() {
+    var localPort = document.getElementById('input-local-port').value;
     if (localPort) {
       document.getElementById('commandText5').innerHTML = `local_port="${localPort}"; echo $local_port`;
     }
