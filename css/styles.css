@@ -61,6 +61,5 @@ blockquote {
   font-family: monospace;
   overflow: auto;
   width: 100%;
-  word-wrap: break-word;
   white-space: normal;
 }
