@@ -61,5 +61,8 @@ blockquote {
   font-family: monospace;
   overflow: auto;
   width: 100%;
-  white-space: normal;
+  word-wrap: break-word;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
