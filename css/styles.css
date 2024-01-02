@@ -1,0 +1,64 @@
+body {
+  background-color: #272822;
+  color: #F8F8F2;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #F92672;
+}
+
+a {
+  color: #AE81FF;
+}
+
+p {
+  color: #A6E22E;
+  flex: 1 0 20%;
+}
+
+li, ul {
+  color: #A6E22E;
+  line-height: 1.6;
+}
+
+code {
+  background-color: #49483E;
+  color: #A6E22E;
+}
+
+pre {
+  background-color: #49483E;
+  color: #F8F8F2;
+}
+
+blockquote {
+  border-left: 5px solid #F92672;
+  padding-left: 10px;
+  color: #75715E;
+}
+
+.hamburger-menu {
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.hamburger-menu .line {
+  width: 30px;
+  height: 3px;
+  background-color: #333;
+  margin: 6px 0;
+}
+
+#command {
+  background-color: #000;
+  color: #fff;
+  padding: 10px;
+  font-family: monospace;
+  overflow: auto;
+  width: 100%;
+}

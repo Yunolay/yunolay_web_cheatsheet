@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yunolay's Web CheetSheet - Basic Enumeration</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Basic Enumeration</h1>
+  </header>
+  <main>
+    <p>Basic info</p>
+    <p>Target ip: <input type="text" name="target-ip" id="target-ip"></p>
+    <p>Target port: <input type="text" name="target-port" id="target-port"></p>
+    <p>Local ip: <input type="text" name="local-ip" id="local-ip"></p>
+    <p>Local port: <input type="text" name="local-port" id="local-port"></p>
+    <button type="button" id="updateButton">Reload</button>
+  </main>
+
+  <h2>Use as a variable.</h2>
+  <p>For example.</p>
+  <p>$ target_ip="192.168.1.2"</p> 
+  <p>$ target_port="80"</p>
+  <p>$ local_ip="192.168.1.100"</p> 
+  <p>$ local_port="4444"</p>
+
+
+  <h2>Port scan</h2>
+  <h3>Linux</h3>
+  <p id="command">$ nmap -sV -sC -p- --min-rate 5000 $target_ip</p>
+
+  <h3>Windows</h3>
+  <p id="command">$ nmap -sV -sC -p- -Pn --min-rate 5000 $target_ip</p>
+
+  <script>
+    document.getElementById('updateButton').addEventListener('click', function() {
+      var targetIp = document.getElementById('target-ip').value;
+      document.getElementById('command').textContent = document.getElementById('command').textContent.replace('$target_ip', targetIp);
+    });
+  </script>
+
+ <footer>
+  <!-- Footer -->
+</footer>
+</body>
+</html>
