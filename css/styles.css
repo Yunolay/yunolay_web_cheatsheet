@@ -54,7 +54,7 @@ blockquote {
   margin: 6px 0;
 }
 
-#command {
+[id^="command"] {
   background-color: #000;
   color: #fff;
   padding: 10px;

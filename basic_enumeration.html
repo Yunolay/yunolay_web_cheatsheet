@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yunolay's Web CheetSheet - Basic Enumeration</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Basic Enumeration</h1>
+  </header>
+
+  <main>
+    <p>Basic info.</p>
+    <p>Target ip: <input type="text" name="target-ip" id="target-ip"></p>
+    <p>Target port: <input type="text" name="target-port" id="target-port"></p>
+    <p>Target domain: <input type="text" name="target-domain" id="target-domain"></p>
+    <p>Local ip: <input type="text" name="local-ip" id="local-ip"></p>
+    <p>Local port: <input type="text" name="local-port" id="local-port"></p>
+    <button type="button" id="updateButton">Reload</button>
+
+  <h2>Use as a variable.</h2>
+    <p>For example, you can use the following variables in your terminal.</p>
+    <p id="command1">$<span id="commandText1">target_ip="192.168.1.2"</span><button id="copyButton1">Copy</button></p> 
+    <p id="command2">$<span id="commandText2">target_port="80"</span><button id="copyButton2">Copy</button></p>
+    <p id="command3">$<span id="commandText3">target_domain="example.com"</span><button id="copyButton3">Copy</button></p>
+    <p id="command4">$<span id="commandText4">local_ip="192.168.1.100"</span><button id="copyButton4">Copy</button></p> 
+    <p id="command5">$<span id="commandText5">local_port="4444"</span><button id="copyButton5">Copy</button></p>
+  
+    <p>Check the environment variables</p>
+
+    <pre id="command">
+$ echo $target_ip
+192.168.1.2
+                                                                            
+$ echo $target_port
+80
+                                                                            
+$ echo $target_domain
+example.com
+                                                                            
+$ echo $local_ip 
+192.168.1.100
+                                                                            
+$ echo $local_port
+4444
+   </pre>
+
+  <h2>Port scan</h2>
+  <p id="command6">$<span id="commandText6">nmap -sV -sC -p- --min-rate 5000 $target_ip</span><button id="copyButton6">Copy</button></p>
+
+  <h3>Windows</h3>
+    <p id="command7">$<span id="commandText7">nmap -sV -sC -p- -Pn --min-rate 5000 $target_ip</span><button id="copyButton6">Copy</button></p>
+
+  <h2>Web Enumeration</h2>
+
+  <h3>Subdomain Enumeration</h3>
+    
+    <p>via gobuster</p>
+    <p id="command8">$ gobuster vhost -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt -u http://$target_domain/ -t 50</p>
+
+    <p>via ffuf</p>
+    <p id="command9">$ ffuf -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt -u http://$target_domain/ -H "Host: FUZZ.$target_domain" -t 50</p>
+    
+  <h3>Directory Enumeration</h3>
+
+  <p>via gobuster</p>
+    <p id="command10">$ gobuster dir -w /usr/share/seclists/Discovery/Web-Content/raft-large-directories-lowercase.txt -t 50</p>
+
+  <script>
+    document.getElementById('updateButton').addEventListener('click', function() {
+      var targetIp = document.getElementById('target-ip').value;
+      var targetPort = document.getElementById('target-port').value;
+      var targetDomain = document.getElementById('target-domain').value;
+      var localIp = document.getElementById('local-ip').value;
+      var localPort = document.getElementById('local-port').value;
+
+      var commandElement = document.getElementById('command');
+      var commandText = commandElement.textContent;
+      commandText = commandText.replace('$target_ip', targetIp);
+      commandText = commandText.replace('$target_port', targetPort);
+      commandText = commandText.replace('$target_domain', targetDomain);
+      commandText = commandText.replace('$local_ip', localIp);
+      commandText = commandText.replace('$local_port', localPort);
+      commandElement.textContent = commandText;
+    });
+
+    var commandTextCount = 100;
+
+    for (var i = 1; i <= commandTextCount; i++) {
+        (function(i) {
+            var copyButtonId = 'copyButton' + i;
+            var commandTextId = 'commandText' + i;
+
+            document.getElementById(copyButtonId).addEventListener('click', function() {
+                var commandText = document.getElementById(commandTextId).textContent;
+                navigator.clipboard.writeText(commandText).then(function() {
+                    console.log('Copying to clipboard was successful!');
+                }, function(err) {
+                    console.error('Could not copy text: ', err);
+                });
+            });
+        })(i);
+    }
+  </script>
+
+</main>
+
+ <footer>
+  <!-- Footer -->
+</footer>
+</body>
+</html>
