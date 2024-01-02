@@ -62,7 +62,5 @@ blockquote {
   overflow: auto;
   width: 100%;
   word-wrap: break-word;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: normal;
 }

@@ -40,20 +40,20 @@
   
     <p>Check the environment variables.</p>
     <pre id="command">
-$ echo $target_ip
-192.168.1.2
-                                                                            
-$ echo $target_port
-80
-                                                                            
-$ echo $target_domain
-example.com
-                                                                            
-$ echo $local_ip 
-192.168.1.100
-                                                                            
-$ echo $local_port
-4444</pre>
+      $ echo $target_ip<br>
+      192.168.1.2<br>
+      <br>
+      $ echo $target_port<br>
+      80<br>
+      <br>
+      $ echo $target_domain<br>
+      example.com<br>
+      <br>
+      $ echo $local_ip<br> 
+      192.168.1.100<br>
+      <br>
+      $ echo $local_port<br>
+      4444</pre>
   
   <h2>Basic Enumeration</h2>
 
@@ -78,8 +78,15 @@ $ echo $local_port
   <h3>Directory Enumeration</h3>
 
   <p>via gobuster</p>
-    <p id="command10">$<span id="commandText10">gobuster dir -w /usr/share/seclists/Discovery/Web-Content/raft-large-directories-lowercase.txt -t 50</span><button id="copyButton10">Copy</button></p>
+  <p id="command10">$<span id="commandText10">gobuster dir -w /usr/share/seclists/Discovery/Web-Content/raft-large-directories-lowercase.txt -t 50</span><button id="copyButton10">Copy</button></p>
 
+  <p>via ffuf</p>
+  <p id="command11">$<span id="commandText11">ffuf -w /usr/share/seclists/Discovery/Web-Content/raft-large-directories-lowercase.txt -t 50</span><button id="copyButton11">Copy</button></p>
+
+  <h3>File Enumeration</h3>
+  
+  <p>via gobuster</p>
+  <p id="command12">$<span id="commandText12">gobuster dir -w /usr/share/seclists/Discovery/Web-Content/raft-large-files.txt -t 50 -x php</span><button id="copyButton12">Copy</button></p>
 </main>
 
  <footer>
