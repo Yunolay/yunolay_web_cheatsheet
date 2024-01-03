@@ -14,6 +14,7 @@
   </header>
   <main>
     <p> > <a hrefa href="index.html">Home</a> > <a href="overview.html">OverView</a></p>
+
     <!-- environment variable replacer -->
     <h2>Environment Variable Replacer.</h2>
     <p>Replace the environment variables.<br>If you are using environment variables, there is no need to replace them.</p>
@@ -119,6 +120,28 @@
       <button type="button" id="updateButton4">Reload</button>
     </p>
 
+    <h4>File Enumeration.</h4>
+    <p>via gobuster</p>
+    <p id="command10">$<span id="commandText10">gobuster dir -w /usr/share/seclists/Discovery/Web-Content/raft-large-files.txt -x php -t 50</span><button id="copyButton10">Copy</button></p>
+    <p>Wordlist: 
+      <select>
+        <option value="wordlist1">/usr/share/seclists/Discovery/Web-Content/common.txt</option>
+        <option value="wordlist2">/usr/share/seclists/Discovery/Web-Content/big.txt</option>
+        <option value="wordlist3">/usr/share/seclists/Discovery/Web-Content/raft-large-words-lowercase.txt</option>
+      </select>
+      <button type="button" id="updateButton4">Reload</button>
+    </p>
+    
+    <p>via fuff</p>
+    <p id="command10">$<span id="commandText10">ffuf -w /usr/share/seclists/Discovery/Web-Content/raft-large-files.txt -u http://$target_domain/FUZZ -t 50</span><button id="copyButton10">Copy</button></p>
+    <p>Wordlist: 
+      <select>
+        <option value="wordlist1">/usr/share/seclists/Discovery/Web-Content/common.txt</option>
+        <option value="wordlist2">/usr/share/seclists/Discovery/Web-Content/big.txt</option>
+        <option value="wordlist3">/usr/share/seclists/Discovery/Web-Content/raft-large-words-lowercase.txt</option>
+      </select>
+      <button type="button" id="updateButton4">Reload</button>
+
     <h2>Shell.</h2>
     <p>For more details, see <a href="shell.html">Shell</a>.</p>
   
@@ -168,6 +191,20 @@
 
     <h3>Spawn Shell.</h3>
     <p id="command12">$<span id="commandText12">python3 -c 'import pty; pty.spawn("/bin/bash")'</span><button id="copyButton12">Copy</button></p>
+
+    <button id="expandButton">More</button>
+    <div id="expandableContent" style="display: none;">
+      <p>content/p>
+    </div>
+
+    <h3>Upgrade Shell.</h3>
+    <h4>Meterpreter.</h4>
+    <h4>Sliver.</h4>
+
+    <h2>CMS</h2>
+    <p>For more details, see <a href="cms/cms.html">CMS</a>.</p>
+    <h3>WordPress.</h3>
+    <h3>Joomla.</h3>
 
   </main>
 
@@ -331,6 +368,15 @@
     var commandText = commandTextElement.innerHTML;
     var encodedCommandText = encodeURIComponent(commandText);
     commandTextElement.innerHTML = encodedCommandText;
+  });
+
+  document.getElementById('expandButton').addEventListener('click', function() {
+    var content = document.getElementById('expandableContent');
+    if (content.style.display === "none") {
+      content.style.display = "block";
+    } else {
+      content.style.display = "none";
+    }
   });
 
 </script>

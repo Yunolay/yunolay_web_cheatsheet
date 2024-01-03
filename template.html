@@ -51,8 +51,11 @@
       $ echo $local_port<br>
       4444</pre>
   </main>
+
  <footer>
-  <p>> <a herf="index.html">Home</a></p>
+  <p> > <a hrefa href="index.html">Home</a></p>
+  <p> > Please forrow me on <a href="https://twitter.com/yunolay">Twitter</a>.</p>
+  <p> > Buy me a <a here="https://www.buymeacoffee.com/yunolay0704">coffee</a>.</p>
 </footer>
 </body>
 
@@ -120,28 +123,27 @@
 
   function updateCommandText(variable, value) {
     var commandTextCount = 15;
+      for (var i = 1; i <= commandTextCount; i++) {
+        var commandTextId = 'commandText' + i;
+        var commandElement = document.getElementById(commandTextId);
+        var commandText = commandElement.innerHTML;
 
-    for (var i = 1; i <= commandTextCount; i++) {
-      var commandTextId = 'commandText' + i;
-      var commandElement = document.getElementById(commandTextId);
+        commandText = commandText.replaceAll(new RegExp('\\' + variable, 'g'), value);
+
+        commandElement.innerHTML = commandText;
+      }
+    }
+
+    document.getElementById('updateDefaltButton1').addEventListener('click', function() {
+    var targetIp = document.getElementById('input-target-ip').value;
+    if (targetIp) {
+      document.getElementById('commandText1').innerHTML = `target_ip="${targetIp}"; echo $target_ip`;
+      var commandElement = document.getElementById('command');
       var commandText = commandElement.innerHTML;
-
-      commandText = commandText.replaceAll(new RegExp('\\' + variable, 'g'), value);
-
+      commandText = commandText.replace(/(\$ echo \$target_ip<br>\n\s*)\S+/, `$1${targetIp}<br>`);
       commandElement.innerHTML = commandText;
     }
-  }
-
-  document.getElementById('updateDefaltButton1').addEventListener('click', function() {
-  var targetIp = document.getElementById('input-target-ip').value;
-  if (targetIp) {
-    document.getElementById('commandText1').innerHTML = `target_ip="${targetIp}"; echo $target_ip`;
-    var commandElement = document.getElementById('command');
-    var commandText = commandElement.innerHTML;
-    commandText = commandText.replace(/(\$ echo \$target_ip<br>\n\s*)\S+/, `$1${targetIp}<br>`);
-    commandElement.innerHTML = commandText;
-  }
-});
+  });
 
   document.getElementById('updateDefaltButton2').addEventListener('click', function() {
     var targetPort = document.getElementById('input-target-port').value;
@@ -204,5 +206,15 @@
           });
       })(i);
   }
+
+  <!-- TODO: Create a button for URL encoding. -->
+  document.getElementById('encodeButton').addEventListener('click', function() {
+    var commandTextElement = document.getElementById('commandText12');
+    var commandText = commandTextElement.innerHTML;
+    var encodedCommandText = encodeURIComponent(commandText);
+    commandTextElement.innerHTML = encodedCommandText;
+  });
+
 </script>
+
 </html>
