@@ -64,21 +64,58 @@
     <p id="command7">$<span id="commandText7">nmap -sV -sC -p- -Pn --min-rate 5000 $target_ip</span><button id="copyButton7">Copy</button></p>
     <p id="command7">$<span id="commandText7">nmap -sV -sC -p- -Pn --min-rate 5000 $target_ip -oN $target_ip.log</span><button id="copyButton7">Copy</button></p>
     
+    <p>Tcpwrapped bypass scan.</p>
+    <p id="command7">$<span id="commandText7">nmap -n -vv -A --min-parallelism=50 --max-parallelism=150 --min-rate 5000 -Pn $target_ip</span><button id="copyButton7">Copy</button></p>
+    <p id="command7">$<span id="commandText7">nmap -n -vv -A --min-parallelism=50 --max-parallelism=150 --min-rate 5000 -Pn $target_ip -oN $target_ip.log</span><button id="copyButton7">Copy</button></p>
+
     <!-- TODO: Create a wordlist replacer. -->
 
-    <h3>Web Enumeration.</h3>
+    <h3>Web Enumeration. - Port 80, 443, etc.</h3>
 
     <h4>Subdomain Enumeration.</h4>
     <p>via gobuster</p>
     <p id="command8">$<span id="commandText8">gobuster vhost -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt -u http://$target_domain/ -t 50</span><button id="copyButton8">Copy</button></p>
+    <p>Wordlist: 
+      <select>
+        <option value="wordlist1">/usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt</option>
+        <option value="wordlist2">/usr/share/seclists/Discovery/DNS/subdomains-top1million-20000.txt</option>
+        <option value="wordlist3">/usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt</option>
+      </select>
+      <button type="button" id="updateButton4">Reload</button>
+    </p>
     <p>via ffuf</p>
     <p id="command9">$<span id="commandText9">ffuf -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt -u http://$target_domain/ -H "Host: FUZZ.$target_domain" -t 50</span><button id="copyButton9">Copy</button></p>
-    
+    <p>Wordlist: 
+      <select>
+        <option value="wordlist1">/usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt</option>
+        <option value="wordlist2">/usr/share/seclists/Discovery/DNS/subdomains-top1million-20000.txt</option>
+        <option value="wordlist3">/usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt</option>
+      </select>
+      <button type="button" id="updateButton4">Reload</button>
+    </p>
+
     <h4>Directory Enumeration.</h4>
     <p>via gobuster</p>
     <p id="command10">$<span id="commandText10">gobuster dir -w /usr/share/seclists/Discovery/Web-Content/raft-large-directories-lowercase.txt -t 50</span><button id="copyButton10">Copy</button></p>
+    <p>Wordlist: 
+      <select>
+        <option value="wordlist1">/usr/share/seclists/Discovery/Web-Content/common.txt</option>
+        <option value="wordlist2">/usr/share/seclists/Discovery/Web-Content/big.txt</option>
+        <option value="wordlist3">/usr/share/seclists/Discovery/Web-Content/raft-large-words-lowercase.txt</option>
+      </select>
+      <button type="button" id="updateButton4">Reload</button>
+    </p>
+    
     <p>via fuff</p>
     <p id="command10">$<span id="commandText10">ffuf -w /usr/share/seclists/Discovery/Web-Content/raft-large-directories-lowercase.txt -u http://$target_domain/FUZZ -t 50</span><button id="copyButton10">Copy</button></p>
+    <p>Wordlist: 
+      <select>
+        <option value="wordlist1">/usr/share/seclists/Discovery/Web-Content/common.txt</option>
+        <option value="wordlist2">/usr/share/seclists/Discovery/Web-Content/big.txt</option>
+        <option value="wordlist3">/usr/share/seclists/Discovery/Web-Content/raft-large-words-lowercase.txt</option>
+      </select>
+      <button type="button" id="updateButton4">Reload</button>
+    </p>
 
     <h2>Shell.</h2>
     <p>For more details, see <a href="shell.html">Shell</a>.</p>
@@ -259,6 +296,7 @@
     var encodedCommandText = encodeURIComponent(commandText);
     commandTextElement.innerHTML = encodedCommandText;
   });
+
 </script>
 
 </body>
