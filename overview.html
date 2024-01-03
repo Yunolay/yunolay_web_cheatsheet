@@ -166,6 +166,13 @@
     <h3>Server-Side Template Injection (SSTI).</h3>
     <p>For more details, see <a href="web_attack/server_side_template_injection.html">Server-Side Template Injection</a>.</p>
 
+    <h2>SMB Enumeration.</h2>
+    <p>For more details, see <a href="windows/smb_enumeration.html">SMB Enumeration</a>.</p>
+    
+    <h2>LDAP Enumeration.</h2>
+    <p>For more details, see <a href="windows/ldap_enumeration.html">LDAP Enumeration</a>.</p>
+    <p id="command11">$<span id="commandText11">ldapsearch -x -h $target_ip -s base namingcontexts</span><button id="copyButton11">Copy</button></p>
+
     <h2>Shell.</h2>
     <p>For more details, see <a href="shell.html">Shell</a>.</p>
   
@@ -228,6 +235,12 @@
     <h2>CMS</h2>
     <p>For more details, see <a href="cms/cms.html">CMS</a>.</p>
     <h3>WordPress.</h3>
+    <p>For more details, see <a href="cms/wordpress.html">WordPress</a>.</p>
+    <p>Basic scan.</p>
+    <p id="command13">$<span id="commandText13">wpscan --url $target_domain</span><button id="copyButton13">Copy</button></p>
+    <p>enumerate users.</p>
+    <p id="command14">$<span id="commandText14">wpscan --url $target_domain --enumerate u</span><button id="copyButton14">Copy</button></p>
+    <h3>Drupal.</h3>
     <h3>Joomla.</h3>
 
   </main>
